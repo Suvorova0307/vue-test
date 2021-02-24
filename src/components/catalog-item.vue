@@ -1,8 +1,11 @@
 <template>
   <div class="catalog-item">
-    <div>Item 1</div>
-    <p>Price: 100</p>
-    <button class="catalog-item__button">add to cart</button>
+    <div class="catalog-item__img">
+      <!-- <img :src='' alt=""> -->
+    </div>
+    <div class="catalog-item__name">{{ productData.name }}</div>
+    <div class="catalog-item__price">Price: {{ productData.price }}</div>
+    <button class="catalog-item__button btn">add to cart</button>
   </div>
 </template>
 
