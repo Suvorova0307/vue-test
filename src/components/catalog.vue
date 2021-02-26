@@ -2,11 +2,12 @@
   <div class="catalog">
     <h1>Catalog</h1>
     <div class="catalog__items">
-      <CatalogItem
+      <catalog-item
         v-for="product in products"
         :key="product.article"
         :productData="product"
-      ></CatalogItem>
+        @sendArticle="showChild"
+      ></catalog-item>
     </div>
   </div>
 </template>
@@ -17,11 +18,10 @@ import CatalogItem from "./catalog-item";
 export default {
   components: { CatalogItem },
   name: "catalog",
-  data() {
-    return {
+  data:() => ({
       products: [
         {
-          image: "1.jpg",
+          image: "1.png",
           name: "T-shirt 1",
           price: 2100.234234234,
           article: "T1",
@@ -29,7 +29,7 @@ export default {
           category: "Мужские",
         },
         {
-          image: "2.jpg",
+          image: "2.png",
           name: "T-shirt 2",
           price: 3150.12312412,
           article: "T2",
@@ -37,7 +37,7 @@ export default {
           category: "Женские",
         },
         {
-          image: "3.jpg",
+          image: "3.png",
           name: "T-shirt 3",
           price: 4200.51524,
           article: "T3",
@@ -45,7 +45,7 @@ export default {
           category: "Женские",
         },
         {
-          image: "4.jpg",
+          image: "4.png",
           name: "T-shirt 4",
           price: 5300.1245512,
           article: "T4",
@@ -53,7 +53,7 @@ export default {
           category: "Мужские",
         },
         {
-          image: "5.jpg",
+          image: "5.png",
           name: "T-shirt 5",
           price: 6500.3522314,
           article: "T5",
@@ -61,7 +61,7 @@ export default {
           category: "Женские",
         },
         {
-          image: "6.jpeg",
+          image: "6.png",
           name: "T-shirt 6",
           price: 8700.4124123,
           article: "T6",
@@ -69,8 +69,12 @@ export default {
           category: "Женские",
         },
       ],
-    };
-  },
+  }),
+  methods: {
+    showChild(data) {
+      console.log(data);
+    }
+  }
 };
 </script>
 
@@ -83,6 +87,7 @@ export default {
     display: flex;
     margin-top: 40px;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
 }
 </style>
