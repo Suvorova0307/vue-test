@@ -6,7 +6,7 @@
         v-for="product in products"
         :key="product.article"
         :productData="product"
-        @sendArticle="showChild"
+        @addToCart="addToCart"
       ></catalog-item>
     </div>
   </div>
@@ -14,67 +14,32 @@
 
 <script>
 import CatalogItem from "./catalog-item";
+import { mapActions, mapState } from "vuex";
 
 export default {
   components: { CatalogItem },
   name: "catalog",
-  data:() => ({
-      products: [
-        {
-          image: "1.png",
-          name: "T-shirt 1",
-          price: 2100.234234234,
-          article: "T1",
-          available: true,
-          category: "Мужские",
-        },
-        {
-          image: "2.png",
-          name: "T-shirt 2",
-          price: 3150.12312412,
-          article: "T2",
-          available: true,
-          category: "Женские",
-        },
-        {
-          image: "3.png",
-          name: "T-shirt 3",
-          price: 4200.51524,
-          article: "T3",
-          available: false,
-          category: "Женские",
-        },
-        {
-          image: "4.png",
-          name: "T-shirt 4",
-          price: 5300.1245512,
-          article: "T4",
-          available: true,
-          category: "Мужские",
-        },
-        {
-          image: "5.png",
-          name: "T-shirt 5",
-          price: 6500.3522314,
-          article: "T5",
-          available: false,
-          category: "Женские",
-        },
-        {
-          image: "6.png",
-          name: "T-shirt 6",
-          price: 8700.4124123,
-          article: "T6",
-          available: true,
-          category: "Женские",
-        },
-      ],
-  }),
+  data: () => ({}),
+  computed: {
+    ...mapState(["products"]),
+  },
   methods: {
-    showChild(data) {
-      console.log(data);
-    }
-  }
+    ...mapActions(["getProducts", "AddToCart"]),
+    addToCart(data) {
+      this.AddToCart(data);
+    },
+    // async test() {
+    //   return new Promise( (resolve)=> {
+    //     setTimeout(()=> {
+    //       resolve('1223');
+    //     }, 3000)
+    //   })
+    // }
+  },
+  async mounted() {
+    await this.getProducts();
+    console.log("data arrived");
+  },
 };
 </script>
 

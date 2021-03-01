@@ -2,22 +2,30 @@
   <div class="main-wrapper">
     <h1>hello {{ title }}</h1>
     <Catalog></Catalog>
+    <Cart v-if="cart.length" :cartData="cart"></Cart>
   </div>
 </template>
 
 <script>
-import Catalog from './catalog'
+import Cart from "./cart";
+import Catalog from "./catalog";
+import { mapState } from "vuex";
+
 export default {
   name: "main-wrapper",
   props: {},
   components: {
-    Catalog,},
+    Cart,
+    Catalog,
+  },
   data() {
     return {
       title: "dear firend",
     };
   },
-  computed: {},
+  computed: {
+    ...mapState(["cart"]),
+  },
   methods: {},
   watch: {},
   mounted() {

@@ -5,7 +5,7 @@
     </div>
     <div class="catalog-item__name">{{ productData.name }}</div>
     <div class="catalog-item__price">Price: {{ productData.price }} р.</div>
-    <button class="catalog-item__button btn" @click="sendToParent">
+    <button class="catalog-item__button btn" @click="addToCart">
       add to cart
     </button>
   </div>
@@ -25,10 +25,11 @@ export default {
   data:() => ({
   }),
   methods: {
-    sendToParent() {
-      this.$emit("sendArticle", this.productData.article);
-    },
+    addToCart() {
+      this.$emit('addToCart', this.productData);
+    }
   },
+  
 };
 </script>
 
